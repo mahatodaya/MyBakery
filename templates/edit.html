@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<hr>
+<form class="modal-content animate" action="{% url 'edit' users.id %}" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <label><i class="fa fa-user fa-2x"></i> <b>Full Name: :</b></label>
+        <input type="text" placeholder="Enter Your Fullname" name="first_name" required value="{{ users.first_name }}">
+
+        <label><i class="fa fa-user fa-2x"></i> <b>Last Name: :</b></label>
+        <input type="text" placeholder="Enter Your Fullname" name="last_name" required value="{{ users.last_name }}">
+
+        <label><i class="fa fa-user fa-2x"></i> <b>Username :</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required value="{{ users.username }}">
+
+        <label><i class="fa fa-envelope fa-2x"></i> <b>Email :</b></label>
+        <input type="text" placeholder="Enter Email Address" name="email" required value="{{ users.email }}">
+
+        <label><i class="fa fa-lock fa-2x"></i> <b>Password :</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required value="{{ users.password }}">
+
+        <label><i class="fa fa-lock fa-2x"></i> <b>Confirm Password :</b></label>
+        <input type="password" placeholder="Confirm Password" name="confirmpassword" required value="{{ users.password }}">
+        
+        <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id02').style.display='none'"
+                class="cancelbtn">Cancel</button>
+            <button type="submit" class="signupbtn">Update</button>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
