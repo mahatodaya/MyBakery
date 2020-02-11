@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from .models import Products
 # from operator import attrgetter
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
+from .forms import ProductForm
 
 # Create your views here.
 def index(request):
@@ -53,7 +56,7 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=username, password=password, email=email,first_name=first_name,last_name=last_name)
                 auth.login(request, user)
-                user.save()
+                user.save() 
                 print('User created')
                 return redirect('login')
         else:
@@ -125,20 +128,41 @@ def signup(request):
 
 
 def store(request):
-
     # page = request.GET.get('page',1)
 
+    # product1 = products()
+    # product1.img = "Cake13.jpg"
+    # product1.name = "RollBiscuit"
+    # product1.price = 25
 
-    return render(request, 'store.html')
+    # product2 = products()
+    # product2.img = "Cake9.jpg"
+    # product2.name = "CreamBiscuit"
+    # product2.price = 30
+    
+    # product3 = products()
+    # product3.img = "Cake12.jpg"
+    # product3.name = "CreamRoll"
+    # product3.price = 40
+
+    # prdts = [product1, product2, product3]
+
+    prdts = Products.objects.all()
+
+    return render(request, 'store.html', {'prdts': prdts})
 
 def menu(request):
+
+
+
     return render(request, 'menu.html')
 
 def contact(request):
     return render(request, 'contact.html')
 
-def items(request):
+def admindashboard(request):#here 
     user_list=User.objects.all()
+    product_list=Products.objects.all()
     paginator = Paginator(user_list, 4) # Show 4 items per page.
     page = request.GET.get('page')
     try:
@@ -148,8 +172,7 @@ def items(request):
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
 
-    
-    return render(request, 'items.html',{'users': users})
+    return render(request, 'admindashboard.html',{'users': users, 'product_list':product_list})
     # if ".pagination" in request.POST:
 
     #     users = User.objects.raw("select * from auth_user limit 4 offset 8")
@@ -187,3 +210,49 @@ def edit(request, id):
         return redirect('/')  
 
     return render(request, 'edit.html', {'users' : users})
+
+def search(request):
+    if request.method == 'POST':
+        users = User.objects.filter(username__icontains = request.POST['searchTerm']).values()
+        print(request.POST['searchTerm'])
+        return JsonResponse(list(users), safe=False)
+
+def search_products(request):
+    if request.method == 'POST':
+        product = Products.objects.filter(name__icontains = request.POST['searchTerm']).values()
+        print(request.POST['searchTerm'])
+        return JsonResponse(list(product), safe=False)
+
+
+def create_products(request):
+    form = ProductForm()
+    context = {
+        'form': form
+    }
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Inserted')
+    return render(request, 'create.html', context)
+
+def update_products(request, id):
+    product = Products.objects.get(id = id)
+    form = ProductForm(instance = product)
+    context = {
+        'form': form
+    }
+    if request.method == 'POST':
+        product = Products.objects.get(id = id)
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Updated')
+            return redirect('admindashboard')
+    return render(request, 'create.html', context)
+        
+def delete_products(request, id):
+    product = Products.objects.get(id = id)
+    product.delete()
+    return redirect('admindashboard')
+        

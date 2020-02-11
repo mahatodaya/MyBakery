@@ -6,7 +6,7 @@
 <form class="modal-content animate" action="{% url 'edit' users.id %}" method="POST">
     {% csrf_token %}
     <div class="container">
-        <label><i class="fa fa-user fa-2x"></i> <b>Full Name: :</b></label>
+        <label><i class="fa fa-user fa-2x"></i> <b>First Name: :</b></label>
         <input type="text" placeholder="Enter Your Fullname" name="first_name" required value="{{ users.first_name }}">
 
         <label><i class="fa fa-user fa-2x"></i> <b>Last Name: :</b></label>
@@ -22,8 +22,9 @@
         <input type="password" placeholder="Enter Password" name="password" required value="{{ users.password }}">
 
         <label><i class="fa fa-lock fa-2x"></i> <b>Confirm Password :</b></label>
-        <input type="password" placeholder="Confirm Password" name="confirmpassword" required value="{{ users.password }}">
-        
+        <input type="password" placeholder="Confirm Password" name="confirmpassword" required
+            value="{{ users.password }}">
+
         <div class="clearfix">
             <button type="button" onclick="document.getElementById('id02').style.display='none'"
                 class="cancelbtn">Cancel</button>

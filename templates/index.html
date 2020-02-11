@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!-- <div class="searchbox">
-        <input type="text" name="search" placeholder=" Enter Search item...">
-        <button type="submit">Search</button>
-    </div> -->
-<div class="body-photo" style="background:url('{% static 'Images/bake.jpg' %}')">
-    <!-- <div class="order">ORDER NOW</div> -->
-    <!-- <div class="order"><input type="button" value="ORDER NOW"></div> -->
-    <a href="#" id="orderbtn">ORDER NOW</a>
-</div><br><br>
 
-<div class="tala container">
+<div class="body-photo">
+    <img src="{% static 'Images/bake.jpg' %}" class="img-fluid" alt="image">
+</div>
 
-    <h1>Welcome to My Bakery</h1>
+<div class="tala container"><br>
+
+    <h1 class="display-3">Welcome to My Bakery </h1>
+    <h6>" KEEP CALM & EAT CAKE "</h6>
     <hr>
     <p>We’re a family business who is honored to serve Kathmandu Valley's neighborhood communities. Since 2002, our
         mission has been simple: to bring
@@ -21,98 +17,52 @@
         to milestone birthdays.
     </p><br><br>
 </div>
+
 <div class="container">
-    <div class="row">
-        <div class="card col-4" style="width: 18rem;">
-            <img src="{% static 'images/CI0.Jpg' %}" alt="">
-            <div class="card-body">
-                <h5 class="card-title">Chocolate Cake</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Rs. 150</h6>
-
-                <a href="#" class="card-link">Order Now</a>
-            </div>
-        </div>
-        <div class="card col-4" style="width: 18rem;">
-            <img src="{% static 'images/CI1.Jpg' %}" alt="">
-            <div class="card-body">
-                <h5 class="card-title">Venella Cake</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Rs. 100</h6>
-
-                <a href="#" class="card-link">Order Now</a>
-
-                <!-- <a href="#" class="card-link">Another link</a> -->
-            </div>
-        </div>
-        <div class="card col-4" style="width: 18rem;">
-            <img src="{% static 'images/CI2.Jpg' %}" alt="">
-            <div class="card-body">
-                <h5 class="card-title">Black Forest Cake</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Rs. 200</h6>
-
-                <a href="#" class="card-link">Order Now</a>
-                <!-- <a href="#" class="card-link">Another link</a> -->
-            </div>
-        </div>
-        <!-- <div class="card col-4" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <img src="images/CI3.Jpg" alt="">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+    <div class="card-deck">
+        <div class="card text-center">
+            <div class="card-block shadow">
+                <div class="inner">
+                    <img src="{% static 'images/CI1.Jpg' %}" class="card-img-top" alt="First Card">
                 </div>
-            </div> -->
 
+                <div class="card-body text-center">
+                    <h5 class="card-title">Venella Cake</h5>
+                    <p class="card-text">Rs. 100</p>
+                    <a href="#" class="btn btn-danger">Order Now</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card text-center">
+            <div class="card-block shadow">
+                <div class="inner">
+                    <img src="{% static 'images/CI0.Jpg' %}" class="card-img-top" alt="Second Card">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Chocolate Cake</h5>
+                    <p class="card-text">Rs. 150</p>
+                    <a href="#" class="btn btn-danger">Order Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card text-center">
+            <div class="card-block shadow">
+                <div class="inner">
+                    <img src="{% static 'images/CI2.Jpg' %}" class="card-img-top" alt="Third Card">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Black Forest Cake</h5>
+                    <p class="card-text">Rs. 200</p>
+                    <a href="#" class="btn btn-danger">Order Now</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- <footer class="bg-primary text-white">
-        <div class="container py-3">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 pb-2"></div>
-                    <h4>About Us</h4>
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati ab ut voluptas quae dolorem aut quidem aperiam accusantium, eos quibusdam ex optio ea vitae id mollitia ad tempora officiis illum.
-                    </p>
-                <div class="col-lg-3 col-sm-6 pb-2"></div>
-                    <h4>Usefull links</h4>
-                    <ul class="list-unstyle">
-                        <li><a href="">HOME</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">contact</a></li>
-                    </ul>
-                <div class="col-lg-3 col-sm-6 pb-2"></div>
-                    <h4>CONTACT US</h4>
-                    <p>
-                        <address>Ghattekulo-Kathmandu, Nepal</address>
-                        <strong>Phone:</strong> 9845712548<br/>
-                        <strong>Email:</strong><a href="mybakery143@gmail.com">test@test.com</a>
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="google"><i class="fab fa-google-plus"></i></a>
-                        <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                <div class="col-lg-3 col-sm-6 pb-2"></div>
-                    <h4>Newsletters</h4>
-                    <p>Enter Your Email Address Below:</p>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="email" name="" id="" class="form-control">
-                            <div class="input-group-append">
-                                <button class="btn btn-secondary">Subscribe</button> 
-                            </div>
-                        </div>
-                    </form>
+</div>
 
-            </div>
-        </div>
-        <div class="container-fluid text-center bg-secondary py-2" >
-            &copy; Copyright MyBakery 2020, All rights are reserved.
-        </div>
-        
-    -->
-    {% endblock %}
+
+{% endblock %}

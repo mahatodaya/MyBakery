@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+            
+<div class="tala container"><br>
+    <br><br><br>
+    <h1 class="display-4">Admin Dashboard</h1>
+    <hr><br>
+    
+
+</div>
+
+
+<div class="container">
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" >
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" >Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Products</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <div id="search-form">
+                        <input type="text" class="search-box">
+                        <button type="submit" id="search-btn" value="users">Search</button>
+                    </div>
+                    <table class="table user-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">I.D.</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email Address</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        {% for user in users %}
+                        <tbody>
+                            <tr>
+                                <th>{{ user.id}}</th>
+                                <td>{{ user.username}}</td>
+                                <td>{{ user.email}}</td>
+                                <td>{{ user.first_name}}</td>
+                                <td>{{ user.last_name}}</td>
+                                <td>
+                                    <a href="/edit/{{ user.id}}"><span class="btn btn-success">Edit</span></a>
+                                    <a href="/delete/{{ user.id }}"><span class="btn btn-danger">Delete</span></a>
+                                </td>
+                            </tr>
+                            {%  endfor %}
+                    </table>
+                </div>
+            </div>
+            <ul class="pagination">
+                {% if users.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ users.previous_page_number }} class=" page-link"">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for u in users.paginator.page_range %}
+                {% if users.number == user %}
+                <li class="page-item active">
+                    <a href="?page={{ u }}" class="page-link">{{ u }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{ u }}" class="page-link">{{ u }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if users.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ users.next_page_number }}" class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        
+        
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'create_products'%}"><span class="btn btn-success">ADD</span></a>
+            <div id="search-form">
+                <input type="text" class="search-box2">
+                <button type="submit" id="search-btn2" value="products">Search</button>
+            </div>
+            <table class="table table-image product-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">I.D.</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                {% for product in product_list %}
+                <tbody>
+                    <tr>
+                        <th>{{ product.id}}</th>
+                        <td><img src="{{ product.img.url}}" alt="" width="50px"></td>
+                        <td>{{ product.name}}</td>
+                        <td>{{ product.price}}</td>
+                        <td>
+                            <a href="{% url 'update_products' product.id %}"><span class="btn btn-success">Edit</span></a>
+                            <a href="{% url 'delete_products' product.id %}"><span class="btn btn-danger">Delete</span></a>
+                        </td>
+                    </tr>
+                    {%  endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+<!-- 
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-image">
+                <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Article Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Words</th>
+                        <th scope="col">Shares</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td class="w-25">
+                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg"
+                                class="img-fluid img-thumbnail" alt="Sheep">
+                        </td>
+                        <td>Bootstrap 4 CDN and Starter Template</td>
+                        <td>Cristina</td>
+                        <td>913</td>
+                        <td>2.846</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td class="w-25">
+                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg"
+                                class="img-fluid img-thumbnail" alt="Sheep">
+                        </td>
+                        <td>Bootstrap Grid 4 Tutorial and Examples</td>
+                        <td>Cristina</td>
+                        <td>1.434</td>
+                        <td>3.417</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+
+{% endblock %}

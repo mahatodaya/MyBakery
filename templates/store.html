@@ -1,142 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
+{% static "images" as baseUrl %}
 {% block content %}
 
-<!-- <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"> -->
-<hr>
-    <div class="images">
-    <div class="row row-cols-1 row-cols-md-3">
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake13.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>RollBiscuit<br> Rs. 25</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake9.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>CreamBiscuit<br> Rs. 30</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake12.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>CreamRoll<br> Rs. 40</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake1.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Strawberry Cake<br> Rs. 40</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake2.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Cake<br> Rs. 50</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake3.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Chocolate CupCake<br> Rs. 25</p>
-            </div>
-            </div>
-        </div>
-        
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake5.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Cake<br> Rs. 100</p>
-            </div>
-            </div>
-        </div>
 
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake6.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Bun<br> Rs. 25</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake7.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Donut<br> Rs. 25</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake8.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>CupCake<br> Rs. 50</p>
-            </div>
-            </div>
-        </div>
-        
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake10.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>Strawberry Cake<br> Rs. 100</p>
-            </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-            <img src="{% static 'images/Cake4.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p>CreamBun<br> Rs. 75</p>
-            </div>
-            </div>
-        </div>
-    </div>
-
-
-    </div>
-
-    <!-- <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav> -->
-
-      
-
-<div class="center">
-<div class="pagination">
-  <a href="#">&laquo;</a>
-  <a href="#" class="active">1</a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a>
-  <a href="#">6</a>
-  <a href="#">&raquo;</a>
+<div class="body-photo">
+    <img src="{% static 'Images/cookies.jpg' %}" class="img-fluid" alt="image">
 </div>
+<br><br>
+
+<div class="tala container"><br>
+    <hr>
+    <h1 class="display-4">MADE <br> FRESH FOR <br> YOU!</h1>
+    <hr>
+    <br><br>
+</div>
+<div class="container">
+    <div class="card-deck row ">
+        {% for prdt in prdts %}
+        <div class="card col-md-4">
+            <div class="card-block shadow">
+                <div class="inner">
+                    <img src="{{prdt.img.url}}" class="card-img-top" alt="Card">
+                    <!-- <img src="{{baseUrl}}/{{prdt.img}}" class="card-img-top" alt="Card"> -->
+                </div>
+                <div class="card-body text-center">
+                    <h1 class="display-6">{{prdt.name}}</h1>
+                    <hr>
+                    <h3 class="display-6">Rs. {{prdt.price}}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

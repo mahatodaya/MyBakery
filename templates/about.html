@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+
+<div class="body-photo">
+    <img src="{% static 'Images/b.jpg' %}" class="img-fluid" alt="image">
+</div>
+
 <div class="About">
-    <div class="body-photoa" style="background:url('{% static 'Images/Web.jpg' %}')"></div>
+
+    
     <main id="contents">
-        <!-- <img src="Images/Web.jpg" alt="image"><br><br> -->
-        <h3>About MyBakery</h3>
+        <h6 class="display-4">About MyBakery</h6>
+        <hr>
         MyBakery is a Pastry Shop, a family owned and operated bakery located in the heart of Kathmandu Valley,
         Dillibazaar Pipalbot.
         The bakery, which was founded in 2002, is well known throughout the East Coast and beyond. Our staff receives
@@ -23,9 +30,10 @@
             <hr> “WE SELL HAPPINESS. IT JUST HAPPENS TO LOOK LIKE A CUPCAKE.”
             <hr>
         </h3><br><br>
-        <h4>WE LOVE BEING A BAKERY</h4>
+        <h4>WE LOVE BEING A BAKERY </h4>
         <p>
-            <img src="{% static 'Images/Wall.jpg' %}" alt="image">To us, a bakery is everything that’s right with a neighborhood. We
+            <img src="{% static 'Images/Wall.jpg' %}" alt="image">To us, a bakery is everything that’s right with a
+            neighborhood. We
             love working dough in the early hours of the morning,
             the satisfyingly straight rows of baguette, and too-adorable-to-eat cupcakes. We love putting smiles on the
             faces of
