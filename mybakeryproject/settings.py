@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'mybakeryproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',   # MySQL has been used for database
         'NAME': 'dbmybakery',
         'USER':'root',
         'PASSWORD':'',

@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('',include('bakeryapp.urls')),
+    path('',include('bakeryapp.urls')),    # Path of Django Apps url included
     path('admin/', admin.site.urls),
     
 ]

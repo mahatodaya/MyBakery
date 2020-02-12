@@ -5,10 +5,9 @@
 <hr>
 <form class="modal-content animate" action="#" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form-control">
-        
-    </div>
+    <div class="form-control"></div>
     {{ form.as_p }}
     <input type="submit" placeholder="Update Products">
 </form>
+
 {% endblock %}

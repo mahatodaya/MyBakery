@@ -1,17 +1,23 @@
 function loginClicked() {
-    $('#myModal').modal('show')
+
+    // Jquery is used for gettinng login and signup model form
+    $('#myModal').modal('show')     
+
 }
+
+
+// searching for users
 const searchBox = document.querySelector('.search-box');
 const searchBtn = document.querySelector('#search-btn');
 
 searchBtn.addEventListener('click', (event) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/search' );
+    xhr.open('POST', '/search');
     xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
     xhr.onload = () => {
         const data = JSON.parse(xhr.responseText);
         const table = document.querySelector('.user-table');
-        let html =`<thead class="thead-dark">
+        let html = `<thead class="thead-dark">
         <tr>
             <th scope="col">I.D.</th>
             <th scope="col">Username</th>
@@ -21,8 +27,8 @@ searchBtn.addEventListener('click', (event) => {
             <th scope="col">Action</th>
         </tr>
     </thead>`;
-        for(d in data){
-            
+        for (d in data) {
+
             html += '<tbody>';
             html += '<tr>';
             html += `<td>${data[d].id}</td>`;
@@ -37,7 +43,7 @@ searchBtn.addEventListener('click', (event) => {
             html += '</tr>';
             html += '</tbody>';
         }
-        
+
         table.innerHTML = html;
 
     }
@@ -46,16 +52,18 @@ searchBtn.addEventListener('click', (event) => {
     xhr.send(data);
     return false;
 });
+
+// searching for products
 const searchBox2 = document.querySelector('.search-box2');
 const searchBtn2 = document.querySelector('#search-btn2');
 searchBtn2.addEventListener('click', (event) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/searchproducts' );
+    xhr.open('POST', '/searchproducts');
     xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
     xhr.onload = () => {
         const data = JSON.parse(xhr.responseText);
         const table = document.querySelector('.product-table');
-        let html =`<thead class="thead-dark">
+        let html = `<thead class="thead-dark">
         <tr>
             <th scope="col">I.D.</th>
             <th scope="col">Image</th>
@@ -64,9 +72,9 @@ searchBtn2.addEventListener('click', (event) => {
             <th scope="col">Action</th>
         </tr>
     </thead>`;
-    
-        for(d in data){
-            
+
+        for (d in data) {
+
             html += '<tbody>';
             html += '<tr>';
             html += `<td>${data[d].id}</td>`;
@@ -80,7 +88,7 @@ searchBtn2.addEventListener('click', (event) => {
             html += '</tr>';
             html += '</tbody>';
         }
-        
+
         table.innerHTML = html;
 
     }
@@ -89,20 +97,13 @@ searchBtn2.addEventListener('click', (event) => {
     xhr.send(data);
     return false;
 });
-// var modal = document.getElementById('id01'); 
-  
-//         window.onclick = function(event) { 
-//             if (event.target == modal) { 
-//                 modal.style.display = "none"; 
-//             } 
-//         }
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');
         for (var i = 0; i < cookies.length; i++) {
             var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;

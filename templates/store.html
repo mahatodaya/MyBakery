@@ -16,13 +16,14 @@
     <br><br>
 </div>
 <div class="container">
-    <div class="row ">
+    <div class="card-deck"></div>
+    <div class="row  " >
+        
         {% for prdt in prdts %}
         <div class="card col-md-4 mb-2">
             <div class="card-block shadow">
                 <div class="inner">
                     <img src="{{prdt.img.url}}" class="card-img-top" alt="Card">
-                    <!-- <img src="{{baseUrl}}/{{prdt.img}}" class="card-img-top" alt="Card"> -->
                 </div>
                 <div class="card-body text-center">
                     <h1 class="display-6">{{prdt.name}}</h1>

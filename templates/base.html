@@ -18,8 +18,7 @@
 
     <div class="banner">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Images/Bakery.png' %}"
-                    alt="logo"></a>
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Images/Bakery.png' %}" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,22 +36,22 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}"><i class="fas fa-address-book"></i> CONTACT US</a>
-                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}"><i class="fas fa-address-card"></i> ABOUT</a>
                     </li>
-                    {% if user.is_authenticated %}
+                    <!-- check if user is login -->
+                    {% if user.is_authenticated %}      
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            
+                            <!-- Users first name will display in navbar after login  -->
                             <i class="fas fa-user"></i> Welcome {{user.first_name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <a class="dropdown-item" href="{% url 'index' %}">Hello, {{user.first_name}}</a> -->
                             <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                            
+                        <!-- check if user is superuser(admin) or not if it is true then dashboard access given -->
                             {% if user.is_superuser == 1 %}
                             <a class="dropdown-item" href="{% url 'admindashboard' %}">Dashboard</a>
                             {% endif %}
@@ -61,9 +60,7 @@
                     {% else %}
                     <li><a class="nav-link" href="#" onclick="document.getElementById('id01').style.display='block'">
                             <i class="fas fa-user"></i> Log In</a></li>
-
                     {% endif %}
-
                 </ul>
             </div>
         </nav>
@@ -74,10 +71,10 @@
         <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
             {{message}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        
+
         {% endfor %}
     </div>
 
@@ -85,6 +82,7 @@
     <!-- here -->
     {% endblock %}
 
+    <!-- Login Model Form  -->
     <div id="id01" class="modal" id="myModal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
         <form class="modal-content animate" action="{% url 'login' %}" method="POST">
@@ -96,7 +94,6 @@
                 <label><i class="fa fa-lock fa-2x"></i> <b>Password :</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
 
-
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
                         class="cancelbtn">Cancel</button>
@@ -107,15 +104,16 @@
         </form>
     </div>
 
+    <!-- Signup Model Form -->
     <div id="id02" class="modal" id="myModal">
         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">×</span>
         <form class="modal-content animate" action="{% url 'signup' %}" method="POST">
             {% csrf_token %}
             <div class="container">
-                <label><i class="fa fa-user fa-2x"></i> <b>First Name: :</b></label>
+                <label><i class="fa fa-user fa-2x"></i> <b>First Name: </b></label>
                 <input type="text" placeholder="Enter Your First Name" name="first_name" required>
 
-                <label><i class="fa fa-user fa-2x"></i> <b>Last Name: :</b></label>
+                <label><i class="fa fa-user fa-2x"></i> <b>Last Name: </b></label>
                 <input type="text" placeholder="Enter Your Last Name" name="last_name" required>
 
                 <label><i class="fa fa-user fa-2x"></i> <b>Username :</b></label>
@@ -139,7 +137,6 @@
                 </div>
             </div>
         </form>
-
     </div>
     <footer id="main-footer">
 
@@ -158,6 +155,7 @@
         </div>
     </footer>
 
+    <!-- login and signup model form JavaScript function -->
     <script>
         function clicked() {
             document.getElementById('id01').style.display = 'none';
